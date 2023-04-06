@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/9db1d29e34.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="script.js" defer></script>
+  </head>
+  <body>
+    <section class="pages">
+      <!------------------------------------ Game Home Page --------------------------------------->
+      <div class="page">
+        <div class="game-home-page">
+          <h1 id="game-title"></h1>
+          <button id="btn-play">Play Now</button>
+          <button id="btn-how-to">How To Play</button>
+        </div>
+      </div>
+
+      <!------------------------------- Game Parameters Window Pop-Up -------------------------------->
+      <div id="game-params" class="modal hidden">
+        <div class="modal-header">
+          <h1>Select Game Difficulty</h1>
+          <i id="btn-close-game-params" class="fa-solid fa-xmark"></i>
+        </div>
+        <button id="btn-play-now">Play Now</button>
+      </div>
+
+      <!----------------------------------- How-To-Play Window Pop-Up -------------------------------->
+      <div id="how-to-play" class="modal hidden">
+        <div class="modal-header">
+          <h1>How To Play</h1>
+          <i id="btn-close-how-to" class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+
+      <section class="page two">
+        <h1>I'M GAME BOARD</h1>
+      </section>
+    </section>
+  </body>
+</html>

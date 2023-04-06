@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Press+Start+2P&display=swap");
+
+/******************************************************** DEFAULT ********************************************************/
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Press Start 2P", helvetica, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.pages {
+  width: 200%;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  transition: all 0.7s 0.3s;
+}
+
+/****************************************************** GAME HOME PAGE ******************************************************/
+.game-home-page {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+
+#game-title {
+  font-size: 6em;
+  padding: 1rem 0;
+}
+
+.game-home-page button {
+  padding: 1rem 2rem;
+}
+
+/***************************************************** GAME MODALS *****************************************************/
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 25vw;
+  height: 30vh;
+  background-color: white;
+  color: black;
+  padding: 2rem 1.5rem;
+  font-family: monospace;
+  transition: all 300ms ease-in-out;
+  z-index: 50;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hidden {
+  transform: scale(0);
+}
+
+.active {
+  transform: scale(1);
+}
+
+/****************************************************** GAME BOARD PAGE ******************************************************/
+.two {
+  color: white;
+}
