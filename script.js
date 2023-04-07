@@ -24,6 +24,8 @@ const typing = () => {
   }
 };
 
+typing();
+
 const slide = (direction) => {
   direction === "next"
     ? (translate -= translateAmount)
@@ -57,7 +59,7 @@ play_now_btn.addEventListener("click", () => {
   // 3. Instantiate new game
   const minesweeperGame = new MinesweeperGame(
     "guest",
-    "easy",
+    "adventurous",
     4,
     6,
     10,
@@ -67,4 +69,24 @@ play_now_btn.addEventListener("click", () => {
   console.log("instantiate new game", minesweeperGame);
 });
 
-typing();
+/**
+ * Event Propagation:
+ */
+
+board.addEventListener("click", (e) => {
+  let selectedTile = e.target;
+
+  if (selectedTile.dataset?.status === "hidden") {
+    selectedTile.classList.add("tile-revealed");
+    selectedTile.classList.add("animate-bubble");
+    setTimeout(() => selectedTile.classList.remove("animate-bubble"), 600);
+  }
+});
+
+/* 
+TODO -
+(1) Game parameter input
+(2) "reveal" and "hidden" CSS class
+(3) Event listener on tile - add revealed class to tile
+
+*/

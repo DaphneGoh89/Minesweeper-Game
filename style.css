@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Press+Start+2P&display=swap");
 
+@font-face {
+  font-family: "guava-candy";
+  src: url("./fonts/guava-candy/Guava\ Candy.ttf");
+}
+
+:root {
+  --board-background: rgba(216, 237, 227, 1);
+  --tile-one-background: rgb(0, 193, 231);
+  --tile-one-font: rgb(116, 214, 231);
+  --tile-one-outset: rgb(0, 135, 208);
+  --tile-two-background: rgb(251, 214, 75);
+  --tile-two-font: rgb(254, 254, 108);
+  --tile-two-outset: rgb(239, 145, 77);
+  --tile-three-background: rgb(249, 111, 171);
+  --tile-three-font: rgb(234, 177, 207);
+  --tile-three-outset: rgb(230, 9, 108);
+}
+
 /******************************************************** DEFAULT ********************************************************/
 *,
 ::before,
@@ -12,7 +30,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  font-family: "Press Start 2P", helvetica, sans-serif;
+  font-family: "guava-candy", "Press Start 2P", helvetica, sans-serif;
   background-color: black;
   color: white;
 }
@@ -21,6 +39,7 @@ button {
   cursor: pointer;
 }
 
+/**********************  Classes for sliding page  *********************/
 .pages {
   width: 200%; /* Formula: numberOfPage * 100% */
   display: flex;
@@ -65,7 +84,7 @@ button {
   background-color: white;
   color: black;
   padding: 2rem 1.5rem;
-  font-family: monospace;
+  font-family: "guava-candy", monospace;
   transition: all 300ms ease-in-out;
   z-index: 50;
 }
@@ -94,12 +113,114 @@ button {
 }
 
 #board {
+  background-color: var(--board-background);
+  padding: 1rem 0.5rem;
+}
+
+.row {
   display: flex;
 }
 
 .tile {
-  width: 20px;
-  height: 20px;
-  background-color: yellow;
-  border: 2px solid red;
+  width: 28px;
+  height: 32px;
+  line-height: 28px;
+  margin: 2px;
+  background-color: rgba(195, 216, 234, 1);
+  border-radius: 0.2rem;
+  /* transition: transform 0.2s ease; */
+}
+
+.tile-revealed {
+  height: 28px;
+  background-color: var(--tile-one-background);
+  color: var(--tile-one-font);
+  box-shadow: 0 4px 0 var(--tile-one-outset);
+  /* transform: scale(0.96); */
+  animation: animate-tile ease-out 0.4s forwards;
+}
+
+@keyframes animate-tile {
+  0% {
+    transform: scale(0.2);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/****************************************************** GAME TILE ONCLICK ANIMATION ******************************************************/
+.tile:before,
+.tile:after {
+  position: absolute;
+  content: "";
+  width: 150%;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1000;
+  background-repeat: no-repeat;
+}
+
+.tile.animate-bubble::before {
+  top: -70%;
+  background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, #2a8ce8 20%, transparent 30%),
+    radial-gradient(circle, #e82a5d 20%, transparent 20%),
+    radial-gradient(circle, #5de82a 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+    radial-gradient(circle, #e82ae8 20%, transparent 20%),
+    radial-gradient(circle, #e8e52a 20%, transparent 20%),
+    radial-gradient(circle, #e8ac2a 20%, transparent 20%),
+    radial-gradient(circle, #e83d2a 20%, transparent 20%);
+  background-size: 20% 20%, 30% 30%, 20% 15%, 30% 30%, 25% 18%, 20% 20%, 25% 25%,
+    20% 10%, 28% 28%;
+  animation: topBubbles ease-in-out 0.6s forwards infinite;
+}
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+.tile.animate-bubble::after {
+  bottom: -70%;
+  background-image: radial-gradient(circle, #e8a22a 20%, transparent 20%),
+    radial-gradient(circle, #2abfe8 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #e2e82a 15%, transparent 20%),
+    radial-gradient(circle, #d52ae8 20%, transparent 20%),
+    radial-gradient(circle, #e82a76 20%, transparent 20%),
+    radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+    radial-gradient(circle, #73e82a 20%, transparent 20%);
+  background-size: 25% 25%, 30% 30%, 28% 28%, 30% 30%, 25% 25%, 30% 30%, 18% 28%;
+  animation: bottomBubbles ease-in-out 0.6s forwards infinite;
+}
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
 }

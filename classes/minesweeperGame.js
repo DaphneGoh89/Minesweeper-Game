@@ -1,4 +1,5 @@
 import { createGameArray, createBoard } from "../utils/utilities.js";
+import { gameDifficulty } from "../gameConstants/gameConstants.js";
 
 export class MinesweeperGame {
   constructor(
@@ -8,20 +9,18 @@ export class MinesweeperGame {
     colNum,
     bombNum,
     hasTimer,
-    timeInSeconds
+    timeAllowedInSeconds
   ) {
     this.player = player;
     this.difficultyLevel = difficultyLevel;
-    this.rowNum = rowNum;
-    this.colNum = colNum;
-    this.bombNum = bombNum;
+    this.rowNum = gameDifficulty[difficultyLevel].rowNum;
+    this.colNum = gameDifficulty[difficultyLevel].colNum;
+    this.bombNum = gameDifficulty[difficultyLevel].bombCount;
     this.hasTimer = hasTimer;
-    this.timeInSeconds = timeInSeconds;
+    this.timeInSeconds = timeAllowedInSeconds;
     this.gameStatus = "started";
-    this.gameArray = createBoard(rowNum, colNum, bombNum);
+    this.gameArray = createBoard(this.rowNum, this.colNum, this.bombNum);
   }
-  // create game board
-  createBoard(rowNum, colNum, bombNum) {}
 
   // start timer
 
@@ -39,6 +38,7 @@ export class Tile {
     let boardTile = document.createElement("div");
     boardTile.dataset.x = x;
     boardTile.dataset.y = y;
+    boardTile.dataset.status = "hidden";
     boardTile.classList.add("tile");
     this.boardTile = boardTile;
     this.x = x;
