@@ -17,8 +17,12 @@ body {
   color: white;
 }
 
+button {
+  cursor: pointer;
+}
+
 .pages {
-  width: 200%;
+  width: 200%; /* Formula: numberOfPage * 100% */
   display: flex;
   box-sizing: border-box;
 }
@@ -27,11 +31,11 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
-  transition: all 0.7s 0.3s;
+  transition: all 0.7s 0.3s; /* transition, duration, delay */
 }
 
 /****************************************************** GAME HOME PAGE ******************************************************/
-.game-home-page {
+.center-page {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -44,7 +48,7 @@ body {
   padding: 1rem 0;
 }
 
-.game-home-page button {
+.center-page button {
   padding: 1rem 2rem;
 }
 
@@ -82,5 +86,20 @@ body {
 
 /****************************************************** GAME BOARD PAGE ******************************************************/
 .two {
+  background-image: url("./images/background.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
+}
+
+#board {
+  display: flex;
+}
+
+.tile {
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border: 2px solid red;
 }
