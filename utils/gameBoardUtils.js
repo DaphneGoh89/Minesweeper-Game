@@ -1,6 +1,6 @@
 import { Tile } from "../classes/minesweeperGame.js";
 
-/**
+/****************************************************************************
  * Funtion: To shuffle game array (randomize bombs position in the array)
  * @param {*} array array containing "normal" and "bomb"
  * @returns shuffled game array
@@ -22,7 +22,7 @@ function shuffleArray(array) {
   return array;
 }
 
-/**
+/****************************************************************************
  * Function: To create an array containing "bomb" and "normal". Array size is dependent on the number of rows and columns provided.
  * @param {*} rowNum Board row size.
  * @param {*} colNum Board column size.
@@ -37,7 +37,7 @@ function createGameArray(rowNum, colNum, bombNum) {
   return shuffledArray;
 }
 
-/**
+/****************************************************************************
  * Function: To create game board in game page.
  * This function calls the Tile constructor to create the Tile object.
  * Each Tile object is a <div> with their own x- / y- coordinate.
@@ -70,4 +70,41 @@ function createBoard(rowNum, colNum, bombNum) {
   console.log("board", board);
 }
 
-export { createGameArray, createBoard };
+/****************************************************************************
+ * Function: Set up timer display in DOM.
+ */
+function timer(timeInSeconds) {
+  let minutes = String(Math.floor(timeInSeconds / 60)).padStart(2, "0");
+  let seconds = String(timeInSeconds % 60).padStart(2, "0");
+  let time = `${minutes}:${seconds}`;
+
+  document.getElementById("timer").innerHTML = time;
+}
+
+/****************************************************************************
+ * Function: Update timer display in DOM after game starts.
+ */
+function startTimer(hasTimer, timeInSeconds, gameStatus) {
+  let timerId = setInterval(() => {
+    console.log("I am in setInterval");
+
+    // Count down timer
+    if (hasTimer && timeInSeconds > 0) {
+      timeInSeconds--;
+      timer(timeInSeconds);
+      return;
+    }
+    // If timer is not required: start counting up until game ends
+    else if (!hasTimer && gameStatus !== "ended") {
+      timeInSeconds++;
+      timer(timeInSeconds);
+      return;
+    }
+
+    clearInterval(timerId);
+  }, 1000);
+
+  return timerId;
+}
+
+export { createGameArray, createBoard, timer, startTimer };

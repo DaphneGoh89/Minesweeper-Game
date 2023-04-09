@@ -5,7 +5,7 @@ import {
   getAdjacentTiles,
   countBomb,
   updateTileStyles,
-} from "./utils/gameFunctionUtils.js";
+} from "./utils/gameLeftClickUtils.js";
 
 //************************************ VARIABLES AND DOM ELEMENTS ****************************************//
 
@@ -75,7 +75,7 @@ play_now_btn.addEventListener("click", () => {
   slide("next");
   // 3. Instantiate new game
 
-  minesweeperGame = new MinesweeperGame("guest", "hard", 4, 6, 10, false, 0);
+  minesweeperGame = new MinesweeperGame("guest", "easy", 4, 6, 10, true);
   console.log("instantiate new game", minesweeperGame);
 });
 

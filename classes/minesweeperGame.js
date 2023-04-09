@@ -1,4 +1,9 @@
-import { createGameArray, createBoard } from "../utils/gameBoardUtils.js";
+import {
+  createGameArray,
+  createBoard,
+  timer,
+  startTimer,
+} from "../utils/gameBoardUtils.js";
 import { gameDifficulty } from "../gameConstants/gameConstants.js";
 
 export class MinesweeperGame {
@@ -17,12 +22,22 @@ export class MinesweeperGame {
     this.colNum = gameDifficulty[difficultyLevel].colNum;
     this.bombNum = gameDifficulty[difficultyLevel].bombCount;
     this.hasTimer = hasTimer;
-    this.timeInSeconds = timeAllowedInSeconds;
+    this.timeInSeconds = hasTimer
+      ? gameDifficulty[difficultyLevel].timeAllowedInSecond
+      : 0;
     this.gameStatus = "started";
     this.gameArray = createBoard(this.rowNum, this.colNum, this.bombNum);
-  }
 
-  // start timer
+    // Initiate timer
+    timer(this.timeInSeconds);
+    this.timerId = startTimer(
+      this.hasTimer,
+      this.timeInSeconds,
+      this.gameStatus
+    );
+
+    console.log("myTimer", this.timerId);
+  }
 
   // check win
 
