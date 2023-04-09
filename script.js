@@ -75,7 +75,7 @@ play_now_btn.addEventListener("click", () => {
   slide("next");
   // 3. Instantiate new game
 
-  minesweeperGame = new MinesweeperGame("guest", "easy", 4, 6, 10, true);
+  minesweeperGame = new MinesweeperGame("guest", "adventurous", 4, 6, 10, true);
   console.log("instantiate new game", minesweeperGame);
 });
 
@@ -104,7 +104,6 @@ TODO -
 (1) Game parameter input
 (2) "reveal" and "hidden" CSS class
 (3) Event listener on tile - end game when click on tile containing bomb
-(4) Timer
-(5) Function to add flag on right click - Validate if right click is in the right div and not in the board
-(6) Tile status: hidden > revealed > flagged 
+(4) Flag animation css
+(5) Tile status: hidden > revealed > flagged 
 */

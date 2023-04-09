@@ -1,7 +1,8 @@
 import { fontColorProperty } from "../gameConstants/gameConstants.js";
 import { minesweeperGame } from "../script.js";
+import { toggleWinSmiley } from "./gameBoardUtils.js";
 
-/**
+/******************************************************************
  * Event Propagation:
  * Right-click event:
  * (1) Check if tile is "hidden"
@@ -9,7 +10,7 @@ import { minesweeperGame } from "../script.js";
  * (a) "bomb" -> end game
  * (b) 0 -> repeat tileClick()
  * (c) display bombCount
- */
+ *****************************************************************/
 
 function tileClick(tile) {
   if (tile.dataset.status !== "hidden") {
@@ -25,10 +26,13 @@ function tileClick(tile) {
 
   let surroundingBombs = countBomb(adjacentTiles);
   tile.innerHTML = surroundingBombs;
-  tile.classList.add("tile-revealed");
+
   updateTileStyles(tile);
   tile.classList.add("animate-bubble");
 
+  toggleWinSmiley(tile);
+
+  // Repeat tileClick() if surroundingBombs = 0
   if (surroundingBombs == 0) {
     for (let tile of adjacentTiles) {
       setTimeout(() => tileClick(tile), 150);
@@ -39,13 +43,13 @@ function tileClick(tile) {
   setTimeout(() => tile.classList.remove("animate-bubble"), 800);
 }
 
-/**
+/******************************************************************
  * Function: Takes in a <div> as a parameter, and return the surrounding div's coordinates.
  * @param {*} div x- / y- coordinates should be set in the data attributes of the div.
  * @param {*} rowNum To prevent the function from including an out of range div.
  * @param {*} colNum To prevent the function from including an out of range div.
  * @returns An array containing all divs adjacent to the div parameter.
- */
+ *****************************************************************/
 function getAdjacentTiles(div, rowNum, colNum) {
   let x = div.dataset.x;
   let y = div.dataset.y;
@@ -73,10 +77,10 @@ function getAdjacentTiles(div, rowNum, colNum) {
   return adjacentCells;
 }
 
-/**
+/******************************************************************
  * Function: Count number of bombs in an array of divs.
  * @param {*} divArray array of divs
- */
+ *****************************************************************/
 function countBomb(divArray) {
   let bombCount = 0;
 
@@ -88,13 +92,18 @@ function countBomb(divArray) {
   return bombCount;
 }
 
-/**
+/******************************************************************
  * Function: Update tile's style based on the following rules -
- * (i) classList contains 'bomb' - show 'bomb' image
- * (ii) Else, show surrounding bombs count
+ * (i) add 'tile-revealed' class to tile
+ * (ii) classList contains 'bomb' - show 'bomb' image
+ * (iii) Else, show surrounding bombs count
  * @param {*} div
- */
+ ******************************************************************/
 function updateTileStyles(div) {
+  // (i)
+  div.classList.add("tile-revealed");
+
+  // (iii)
   if (div.classList.contains("bomb")) {
     div.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
     div.style.backgroundColor = "red";
@@ -108,7 +117,9 @@ function updateTileStyles(div) {
         div.classList.remove("bomb");
       }
     }, 3000);
-  } else {
+  }
+  // (ii)
+  else {
     let count = div.innerHTML;
     div.style.backgroundColor = fontColorProperty[count].backgroundColor;
     div.style.color = fontColorProperty[count].fontColor;
@@ -116,9 +127,9 @@ function updateTileStyles(div) {
   }
 }
 
-/**
+/******************************************************************
  * Function: Reveal all bombs when called.
- */
+ *****************************************************************/
 function revealBombs() {
   let bombArray = document.querySelectorAll(".bomb");
   for (let div of bombArray) {

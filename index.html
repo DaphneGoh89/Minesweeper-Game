@@ -23,13 +23,13 @@
       <div class="page">
         <div class="center-page">
           <h1 id="game-title" class="title-text"></h1>
-          <button id="btn-play" class="game-button">Play Now</button>
-          <button id="btn-how-to" class="game-button">How To Play</button>
+          <button id="btn-play" class="game-button pink">Play Now</button>
+          <button id="btn-how-to" class="game-button green">How To Play</button>
         </div>
       </div>
 
       <!------------------------------- Game Parameters Window Pop-Up -------------------------------->
-      <div id="game-params" class="modal hidden">
+      <div id="game-params" class="modal modal-shape hidden">
         <div class="modal-header">
           <h1>Select Game Difficulty</h1>
           <i id="btn-close-game-params" class="fa-solid fa-xmark"></i>
@@ -38,7 +38,7 @@
       </div>
 
       <!----------------------------------- How-To-Play Window Pop-Up -------------------------------->
-      <div id="how-to-play" class="modal hidden">
+      <div id="how-to-play" class="modal modal-shape hidden">
         <div class="modal-header">
           <h1>How To Play</h1>
           <i id="btn-close-how-to" class="fa-solid fa-xmark"></i>
@@ -46,15 +46,15 @@
       </div>
 
       <section class="page two">
-        <div class="center-page">
-          <div id="board">
+       
+          <div id="board" class="center-page">
             <div id="game-control">
               <div id="bombCount" class="game-control">001</div>
-              <div id="smiley">001</div>
+              <div id="smiley"><img id="smiley-img" src="./images/smiley-face-tears-joy.png"></img></div>
               <div id="timer" class="game-control">00:10</div>
             </div>
           </div>
-        </div>
+        
       </section>
     </section>
   </body>

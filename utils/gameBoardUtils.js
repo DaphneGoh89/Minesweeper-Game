@@ -48,7 +48,7 @@ function createGameArray(rowNum, colNum, bombNum) {
 function createBoard(rowNum, colNum, bombNum) {
   // 1. Setup game control section
   document.getElementById("bombCount").innerHTML = String(bombNum).padStart(
-    3,
+    4,
     "0"
   );
 
@@ -107,4 +107,25 @@ function startTimer(hasTimer, timeInSeconds, gameStatus) {
   return timerId;
 }
 
-export { createGameArray, createBoard, timer, startTimer };
+/****************************************************************************
+ * Function: Toggle smiley-img on click
+ * @param {*} div This function takes in a div representing the tile that has been clicked on to examine if it contains a bomb in its classList.
+ */
+function toggleWinSmiley(div) {
+  if (div.classList.contains("bomb")) {
+    document.getElementById("smiley-img").src = "../images/crying-emoji.png";
+    return;
+  }
+
+  document.getElementById("smiley-img").src = "../images/tongue-out-emoji.png";
+  document.getElementById("smiley-img").classList.add("active");
+
+  let timeoutId = setTimeout(() => {
+    document.getElementById("smiley-img").src =
+      "../images/smiley-face-tears-joy.png";
+    document.getElementById("smiley-img").classList.remove("active");
+    clearTimeout(timeoutId);
+  }, 200);
+}
+
+export { createGameArray, createBoard, timer, startTimer, toggleWinSmiley };
