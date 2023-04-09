@@ -7,6 +7,7 @@
 
 :root {
   --board-background: rgba(216, 237, 227, 1);
+  --tile-hidden: rgba(195, 216, 234, 1);
   --tile-one-background: rgb(0, 193, 231);
   --tile-one-font: rgb(116, 214, 231);
   --tile-one-outset: rgb(0, 135, 208);
@@ -105,16 +106,41 @@ button {
 
 /****************************************************** GAME BOARD PAGE ******************************************************/
 .two {
-  background-image: url("./images/background.jpeg");
+  background-image: url("./images/nightsky.png");
+  background-color: rgba(254, 247, 230, 1);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
 }
 
+/* #game-control {
+  width: 50%;
+  height: 5%;
+  background-color: var(--board-background);
+  margin: 20px auto;
+  border-radius: 50px;
+} */
+
+#game-control {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+.game-control {
+  background-color: var(--tile-hidden);
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  width: 20%;
+}
+
 #board {
   background-color: var(--board-background);
-  padding: 1rem 0.5rem;
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 2.5rem;
 }
 
 .row {
@@ -123,12 +149,49 @@ button {
 
 .tile {
   width: 28px;
-  height: 32px;
+  height: 30px;
+  font-size: 1.4rem;
   line-height: 28px;
-  margin: 2px;
-  background-color: rgba(195, 216, 234, 1);
-  border-radius: 0.2rem;
+  margin: 1px;
+  background-color: var(--tile-hidden);
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* transition: transform 0.2s ease; */
+}
+
+.tile img {
+  width: 70%;
+  height: 70%;
+}
+
+.flag {
+  transform: rotate(-30deg) translate(4px, -2px);
+  fill: var(--tile-three-background);
+}
+
+.bomb {
+  /* background-color: rgb(249, 111, 171); */
+}
+
+/* .tile.bomb img {
+
+  animation: animate-bomb ease-out 0.8s forwards infinite;
+} */
+
+@keyframes animate-bomb {
+  0% {
+    transform: scale(2);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tile-revealed {
@@ -136,8 +199,7 @@ button {
   background-color: var(--tile-one-background);
   color: var(--tile-one-font);
   box-shadow: 0 4px 0 var(--tile-one-outset);
-  /* transform: scale(0.96); */
-  animation: animate-tile ease-out 0.4s forwards;
+  animation: animate-tile ease-out 0.5s forwards;
 }
 
 @keyframes animate-tile {
@@ -155,6 +217,7 @@ button {
 }
 
 /****************************************************** GAME TILE ONCLICK ANIMATION ******************************************************/
+
 .tile:before,
 .tile:after {
   position: absolute;
@@ -165,6 +228,7 @@ button {
   transform: translateX(-50%);
   z-index: -1000;
   background-repeat: no-repeat;
+  pointer-events: none; /* Added to prevent click event outside of game board. */
 }
 
 .tile.animate-bubble::before {
@@ -180,7 +244,7 @@ button {
     radial-gradient(circle, #e83d2a 20%, transparent 20%);
   background-size: 20% 20%, 30% 30%, 20% 15%, 30% 30%, 25% 18%, 20% 20%, 25% 25%,
     20% 10%, 28% 28%;
-  animation: topBubbles ease-in-out 0.6s forwards infinite;
+  animation: topBubbles ease-in-out 0.8s forwards infinite;
 }
 @keyframes topBubbles {
   0% {
@@ -207,7 +271,7 @@ button {
     radial-gradient(circle, #7d2ae8 20%, transparent 20%),
     radial-gradient(circle, #73e82a 20%, transparent 20%);
   background-size: 25% 25%, 30% 30%, 28% 28%, 30% 30%, 25% 25%, 30% 30%, 18% 28%;
-  animation: bottomBubbles ease-in-out 0.6s forwards infinite;
+  animation: bottomBubbles ease-in-out 0.8s forwards infinite;
 }
 @keyframes bottomBubbles {
   0% {
@@ -223,4 +287,14 @@ button {
       110% 10%;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
+}
+
+.test-background {
+  color: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 206, 209) 0 60%,
+    rgba(253, 0, 143) 40% 100%
+  );
+  -webkit-background-clip: text;
 }

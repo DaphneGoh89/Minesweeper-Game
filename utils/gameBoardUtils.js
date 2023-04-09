@@ -37,12 +37,25 @@ function createGameArray(rowNum, colNum, bombNum) {
   return shuffledArray;
 }
 
-/********************** Function: Create game board ************************/
+/**
+ * Function: To create game board in game page.
+ * This function calls the Tile constructor to create the Tile object.
+ * Each Tile object is a <div> with their own x- / y- coordinate.
+ * @param {*} rowNum self-explanatory.
+ * @param {*} colNum self-explanatory.
+ * @param {*} bombNum self-explanatory.
+ */
 function createBoard(rowNum, colNum, bombNum) {
-  // execute createGameArray function
-  let gameArray = createGameArray(rowNum, colNum, bombNum);
+  // 1. Setup game control section
+  document.getElementById("bombCount").innerHTML = String(bombNum).padStart(
+    3,
+    "0"
+  );
 
-  // loop through row / col -> call Tile constructor
+  // 2. Setup game tiles -> call Tile constructor
+  let gameArray = createGameArray(rowNum, colNum, bombNum);
+  console.log("Game's array", gameArray);
+
   for (let x = 0; x < rowNum; x++) {
     let row = document.createElement("div");
     row.classList.add("row");

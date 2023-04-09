@@ -1,4 +1,4 @@
-import { createGameArray, createBoard } from "../utils/utilities.js";
+import { createGameArray, createBoard } from "../utils/gameBoardUtils.js";
 import { gameDifficulty } from "../gameConstants/gameConstants.js";
 
 export class MinesweeperGame {
@@ -31,6 +31,14 @@ export class MinesweeperGame {
   // reveal tile
 
   // flag tile
+
+  // minus bomb
+  setBombNum() {
+    this.bombNum -= 1;
+    document.getElementById("bombCount").innerHTML = String(
+      this.bombNum
+    ).padStart(4, "0");
+  }
 }
 
 export class Tile {
@@ -40,14 +48,14 @@ export class Tile {
     boardTile.dataset.y = y;
     boardTile.dataset.status = "hidden";
     boardTile.classList.add("tile");
+    if (hasBomb) {
+      boardTile.classList.add("bomb");
+    }
     this.boardTile = boardTile;
-    this.x = x;
-    this.y = y;
-    this.hasBomb = hasBomb;
-    this.status = "hidden";
+    this.tileClick = function () {
+      console.log("I'm clicked!");
+    };
   }
-
-  // reveal tile
 
   // flag tile
 

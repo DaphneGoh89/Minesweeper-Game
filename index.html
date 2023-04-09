@@ -22,7 +22,7 @@
       <!------------------------------------ Game Home Page --------------------------------------->
       <div class="page">
         <div class="center-page">
-          <h1 id="game-title"></h1>
+          <h1 id="game-title" class="test-background"></h1>
           <button id="btn-play">Play Now</button>
           <button id="btn-how-to">How To Play</button>
         </div>
@@ -46,7 +46,15 @@
       </div>
 
       <section class="page two">
-        <div id="board" class="center-page"></div>
+        <div class="center-page">
+          <div id="board">
+            <div id="game-control">
+              <div id="bombCount" class="game-control">001</div>
+              <div id="smiley">001</div>
+              <div id="timer" class="game-control">00:10</div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
   </body>
