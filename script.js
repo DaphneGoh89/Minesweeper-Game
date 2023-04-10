@@ -102,7 +102,7 @@ TODO -
 (1) Game parameter input
 (2) "reveal" and "hidden" CSS class
 (3) Event listener on tile - end game when click on tile containing bomb
-(4) Flag animation css
-(5) To create two game modals - 1. Game over  2. You win 
-(6) Add click sound
+(4) To create two game modals - 1. Game over  2. You win 
+(5) Add click sound
+(6) Right click to remove flag (or rotate between question mark and flag)
 */

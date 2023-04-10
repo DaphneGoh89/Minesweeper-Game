@@ -29,11 +29,16 @@ function tileClick(tile) {
 
   updateTileStyles(tile);
   toggleSmiley(tile);
+  document.getElementById("tile-click").play();
+  // console.log(
+  //   "left click duration",
+  //   document.getElementById("tile-click").duration
+  // );
 
   // Repeat tileClick() if surroundingBombs = 0
   if (surroundingBombs == 0) {
     for (let tile of adjacentTiles) {
-      setTimeout(() => tileClick(tile), 150);
+      setTimeout(() => tileClick(tile), 216);
     }
   }
 

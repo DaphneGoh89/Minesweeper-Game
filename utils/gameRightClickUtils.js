@@ -14,6 +14,7 @@ function tileRightClick(e) {
     tile.dataset.status = "flagged";
     tile.innerHTML = flag;
     updateTileStyles(tile);
+    document.getElementById("tile-flagged").play();
     //"<img src='../images/triangular-flag.svg' class='flag'></img>";
     minesweeperGame.setBombNum();
   }
