@@ -83,17 +83,16 @@
   height: 75%;
 }
 
-.flag {
+/* .flag {
   transform: translate(4px, -2px);
-  fill: var(--tile-three-background);
-}
+} */
 
 .tile-revealed,
 .tile-flagged {
   height: 28px;
-  background-color: var(--tile-one-background);
-  color: var(--tile-one-font);
-  box-shadow: 0 4px 0 var(--tile-one-outset);
+  background-color: white;
+  color: white;
+  box-shadow: 0 2px 0 var(--tile-hidden);
   animation: animate-tile ease-out 0.5s forwards;
 }
 

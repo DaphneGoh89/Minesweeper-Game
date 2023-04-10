@@ -91,7 +91,10 @@ close_game_win_btn.addEventListener("click", () => {
 });
 
 board.addEventListener("click", (e) => tileClick(e.target));
-board.addEventListener("contextmenu", (e) => tileRightClick(e));
+board.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  tileRightClick(e.target);
+});
 
 //**************************************** EXPORTS ****************************************//
 export { minesweeperGame };

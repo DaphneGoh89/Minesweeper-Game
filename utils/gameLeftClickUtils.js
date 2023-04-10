@@ -29,11 +29,7 @@ function tileClick(tile) {
 
   updateTileStyles(tile);
   toggleSmiley(tile);
-  document.getElementById("tile-click").play();
-  // console.log(
-  //   "left click duration",
-  //   document.getElementById("tile-click").duration
-  // );
+  document.getElementById("tile-click").play(); // document.getElementById("tile-click").duration
 
   // Repeat tileClick() if surroundingBombs = 0
   if (surroundingBombs == 0) {
@@ -103,21 +99,15 @@ function countBomb(divArray) {
  * @param {*} div
  ******************************************************************/
 function updateTileStyles(div) {
-  if (div.dataset.status === "flagged") {
-    div.classList.add("tile-flagged");
-    div.style.backgroundColor = fontColorProperty[0].backgroundColor;
-    div.style.color = fontColorProperty[0].fontColor;
-    div.style.boxShadow = `0 4px 0 ${fontColorProperty[0].outsetColor}`;
-  }
-  // (iii)
-  else if (div.classList.contains("bomb")) {
+  // (ii)
+  if (div.classList.contains("bomb")) {
     div.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
     div.style.backgroundColor = "red";
     revealBombs();
 
     setTimeout(() => {
       let bombArray = document.querySelectorAll(".bomb");
-      console.log("bombArray", bombArray);
+
       for (let div of bombArray) {
         div.classList.remove("bomb");
       }
@@ -126,7 +116,7 @@ function updateTileStyles(div) {
     // (i)
     div.classList.add("tile-revealed");
     div.classList.add("animate-bubble");
-    // (ii)
+    // (iii)
     let count = div.innerHTML;
     div.style.backgroundColor = fontColorProperty[count].backgroundColor;
     div.style.color = fontColorProperty[count].fontColor;
