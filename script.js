@@ -6,7 +6,7 @@ import {
   countBomb,
   updateTileStyles,
 } from "./utils/gameLeftClickUtils.js";
-
+import { tileRightClick } from "./utils/gameRightClickUtils.js";
 //************************************ VARIABLES AND DOM ELEMENTS ****************************************//
 
 const play_btn = document.getElementById("btn-play");
@@ -80,20 +80,7 @@ play_now_btn.addEventListener("click", () => {
 });
 
 board.addEventListener("click", (e) => tileClick(e.target));
-board.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-  console.log("context menu", e.target);
-  let tile = e.target;
-  if (
-    tile.tagName === "DIV" &&
-    (tile.dataset.status === "hidden" || tile.dataset.status === "questioned")
-  ) {
-    tile.dataset.status = "flagged";
-    tile.innerHTML =
-      "<img src='../images/triangular-flag.svg' class='flag'></img>";
-    minesweeperGame.setBombNum();
-  }
-});
+board.addEventListener("contextmenu", (e) => tileRightClick(e));
 
 //**************************************** EXPORTS ****************************************//
 export { minesweeperGame };

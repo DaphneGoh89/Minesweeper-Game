@@ -1,0 +1,48 @@
+/***************************************************** GAME MODALS *****************************************************/
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 25vw;
+  height: 30vh;
+  background-color: white;
+  color: black;
+  padding: 2rem 1.5rem;
+  font-family: "guava-candy", monospace;
+  transition: all 300ms ease-in-out;
+  z-index: 50;
+}
+
+.modal-shape {
+  border-radius: 50%/10%;
+}
+
+/* Added for TV-shaped div */
+.modal-shape::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -5%;
+  left: -5%;
+  background: inherit;
+  border-radius: 5%/50%;
+  z-index: -10;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hidden {
+  transform: scale(0);
+}
+
+.active {
+  transform: scale(1);
+}

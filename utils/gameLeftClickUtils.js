@@ -1,6 +1,6 @@
 import { fontColorProperty } from "../gameConstants/gameConstants.js";
 import { minesweeperGame } from "../script.js";
-import { toggleWinSmiley } from "./gameBoardUtils.js";
+import { toggleSmiley } from "./gameBoardUtils.js";
 
 /******************************************************************
  * Event Propagation:
@@ -28,9 +28,7 @@ function tileClick(tile) {
   tile.innerHTML = surroundingBombs;
 
   updateTileStyles(tile);
-  tile.classList.add("animate-bubble");
-
-  toggleWinSmiley(tile);
+  toggleSmiley(tile);
 
   // Repeat tileClick() if surroundingBombs = 0
   if (surroundingBombs == 0) {
@@ -100,11 +98,13 @@ function countBomb(divArray) {
  * @param {*} div
  ******************************************************************/
 function updateTileStyles(div) {
-  // (i)
-  div.classList.add("tile-revealed");
-
+  if (div.dataset.status === "flagged") {
+    div.style.backgroundColor = fontColorProperty[0].backgroundColor;
+    div.style.color = fontColorProperty[0].fontColor;
+    div.style.boxShadow = `0 4px 0 ${fontColorProperty[0].outsetColor}`;
+  }
   // (iii)
-  if (div.classList.contains("bomb")) {
+  else if (div.classList.contains("bomb")) {
     div.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
     div.style.backgroundColor = "red";
     revealBombs();
@@ -113,13 +113,14 @@ function updateTileStyles(div) {
       let bombArray = document.querySelectorAll(".bomb");
       console.log("bombArray", bombArray);
       for (let div of bombArray) {
-        console.log(div);
         div.classList.remove("bomb");
       }
     }, 3000);
-  }
-  // (ii)
-  else {
+  } else {
+    // (i)
+    div.classList.add("tile-revealed");
+    div.classList.add("animate-bubble");
+    // (ii)
     let count = div.innerHTML;
     div.style.backgroundColor = fontColorProperty[count].backgroundColor;
     div.style.color = fontColorProperty[count].fontColor;

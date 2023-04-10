@@ -1,0 +1,39 @@
+#board {
+  background-color: var(--board-background);
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 2.5rem;
+}
+
+/* Display tile horizontally */
+.row {
+  display: flex;
+}
+
+/* Container: bombCount, smiley face and timer  */
+#game-control {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+/* bombCount / timer style */
+.game-control {
+  background-color: var(--tile-hidden);
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  width: 20%;
+}
+
+/* Smiley face display - fixed size with rounded border edge */
+#smiley img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
+
+/* Add ring shadow around smiley face when user click on the right tile */
+#smiley img.active {
+  box-shadow: 5px 5px 20px white, -5px -5px 20px white;
+}

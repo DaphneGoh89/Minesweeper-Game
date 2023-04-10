@@ -111,7 +111,7 @@ function startTimer(hasTimer, timeInSeconds, gameStatus) {
  * Function: Toggle smiley-img on click
  * @param {*} div This function takes in a div representing the tile that has been clicked on to examine if it contains a bomb in its classList.
  */
-function toggleWinSmiley(div) {
+function toggleSmiley(div) {
   if (div.classList.contains("bomb")) {
     document.getElementById("smiley-img").src = "../images/crying-emoji.png";
     return;
@@ -128,4 +128,4 @@ function toggleWinSmiley(div) {
   }, 200);
 }
 
-export { createGameArray, createBoard, timer, startTimer, toggleWinSmiley };
+export { createGameArray, createBoard, timer, startTimer, toggleSmiley };

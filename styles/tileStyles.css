@@ -1,0 +1,124 @@
+/* tile pop-up effect */
+@keyframes animate-tile {
+  0% {
+    transform: scale(0.2);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* sprinkle confetti on click */
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+/* sprinkle confetti on click */
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+.tile {
+  width: 28px;
+  height: 30px;
+  font-size: 1.4rem;
+  line-height: 28px;
+  margin: 1px;
+  background-color: var(--tile-hidden);
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* For flag and bomb display in tile */
+.tile img,
+.tile svg {
+  width: 75%;
+  height: 75%;
+}
+
+.flag {
+  transform: translate(4px, -2px);
+  fill: var(--tile-three-background);
+}
+
+.tile-revealed,
+.tile-flagged {
+  height: 28px;
+  background-color: var(--tile-one-background);
+  color: var(--tile-one-font);
+  box-shadow: 0 4px 0 var(--tile-one-outset);
+  animation: animate-tile ease-out 0.5s forwards;
+}
+
+.tile:before,
+.tile:after {
+  position: absolute;
+  content: "";
+  width: 150%;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1000;
+  background-repeat: no-repeat;
+  pointer-events: none; /* Added to prevent click event outside of game board. */
+}
+
+.tile.animate-bubble::before {
+  top: -70%;
+  background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, #2a8ce8 20%, transparent 30%),
+    radial-gradient(circle, #e82a5d 20%, transparent 20%),
+    radial-gradient(circle, #5de82a 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+    radial-gradient(circle, #e82ae8 20%, transparent 20%),
+    radial-gradient(circle, #e8e52a 20%, transparent 20%),
+    radial-gradient(circle, #e8ac2a 20%, transparent 20%),
+    radial-gradient(circle, #e83d2a 20%, transparent 20%);
+  background-size: 20% 20%, 30% 30%, 20% 15%, 30% 30%, 25% 18%, 20% 20%, 25% 25%,
+    20% 10%, 28% 28%;
+  animation: topBubbles ease-in-out 0.8s forwards infinite;
+}
+
+.tile.animate-bubble::after {
+  bottom: -70%;
+  background-image: radial-gradient(circle, #e8a22a 20%, transparent 20%),
+    radial-gradient(circle, #2abfe8 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #e2e82a 15%, transparent 20%),
+    radial-gradient(circle, #d52ae8 20%, transparent 20%),
+    radial-gradient(circle, #e82a76 20%, transparent 20%),
+    radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+    radial-gradient(circle, #73e82a 20%, transparent 20%);
+  background-size: 25% 25%, 30% 30%, 28% 28%, 30% 30%, 25% 25%, 30% 30%, 18% 28%;
+  animation: bottomBubbles ease-in-out 0.8s forwards infinite;
+}
