@@ -5,7 +5,7 @@
   }
 
   50% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 
   100% {
@@ -44,6 +44,22 @@
     background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
       110% 10%;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+/* animate flag svg */
+@keyframes animate-flag {
+  0% {
+    stroke-dashoffset: -40;
+  }
+
+  80% {
+    fill: transparent;
+  }
+
+  100% {
+    stroke-dashoffset: -80;
+    fill: var(--title-darkpink);
   }
 }
 
@@ -121,4 +137,10 @@
     radial-gradient(circle, #73e82a 20%, transparent 20%);
   background-size: 25% 25%, 30% 30%, 28% 28%, 30% 30%, 25% 25%, 30% 30%, 18% 28%;
   animation: bottomBubbles ease-in-out 0.8s forwards infinite;
+}
+
+.tile-flagged svg path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 0;
+  animation: animate-flag 0.6s linear forwards;
 }

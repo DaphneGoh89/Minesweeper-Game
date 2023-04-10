@@ -6,7 +6,7 @@ function tileRightClick(e) {
   e.preventDefault();
 
   let tile = e.target;
-  console.log("right click", tile);
+
   if (
     tile.tagName === "DIV" &&
     (tile.dataset.status === "hidden" || tile.dataset.status === "questioned")

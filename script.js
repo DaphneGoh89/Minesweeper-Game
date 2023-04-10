@@ -14,9 +14,12 @@ const close_game_params_btn = document.getElementById("btn-close-game-params");
 const how_to_btn = document.getElementById("btn-how-to");
 const close_how_to_btn = document.getElementById("btn-close-how-to");
 const play_now_btn = document.getElementById("btn-play-now");
+const close_game_win_btn = document.getElementById("btn-close-game-win");
+const test_show_modal_btn = document.getElementById("test-show-modal");
 
 const game_params = document.getElementById("game-params");
 const how_to_play = document.getElementById("how-to-play");
+const game_win = document.getElementById("game-win");
 
 const board = document.getElementById("board");
 const pages = document.querySelectorAll(".page");
@@ -79,6 +82,14 @@ play_now_btn.addEventListener("click", () => {
   console.log("instantiate new game", minesweeperGame);
 });
 
+test_show_modal_btn.addEventListener("click", () => {
+  game_win.classList.add("active");
+});
+
+close_game_win_btn.addEventListener("click", () => {
+  game_win.classList.remove("active");
+});
+
 board.addEventListener("click", (e) => tileClick(e.target));
 board.addEventListener("contextmenu", (e) => tileRightClick(e));
 
@@ -92,5 +103,6 @@ TODO -
 (2) "reveal" and "hidden" CSS class
 (3) Event listener on tile - end game when click on tile containing bomb
 (4) Flag animation css
-(5) Tile status: hidden > revealed > flagged 
+(5) To create two game modals - 1. Game over  2. You win 
+(6) Add click sound
 */

@@ -31,40 +31,52 @@
           <button id="btn-how-to" class="game-button green">How To Play</button>
         </div>
       </div>
-      
+
       <!------------------------------- Game Parameters Window Pop-Up -------------------------------->
       <div id="game-params" class="modal modal-shape hidden">
-        <div class="modal-header">
-          <h1>Select Game Difficulty</h1>
+        <div class="close-modal-btn">
           <i id="btn-close-game-params" class="fa-solid fa-xmark"></i>
         </div>
+        <h1>Select Game Difficulty</h1>
+
         <button id="btn-play-now" class="game-button pink">Play Now</button>
       </div>
 
       <!----------------------------------- How-To-Play Window Pop-Up -------------------------------->
       <div id="how-to-play" class="modal modal-shape hidden">
-        <div class="modal-header">
-          <h1>How To Play</h1>
+        <div class="close-modal-btn">
           <i id="btn-close-how-to" class="fa-solid fa-xmark"></i>
         </div>
+
+        <h1>How To Play</h1>
       </div>
 
       <section class="page two">
-       
-          <div id="board" class="center-page">
-            <div id="game-control">
-              <div id="bombCount" class="game-control">001</div>
-              <div id="smiley"><img id="smiley-img" src="./images/smiley-face-tears-joy.png"></img></div>
-              <div id="timer" class="game-control">00:10</div>
+        <div id="board" class="center-page">
+          <button id="test-show-modal">Show Modal</button>
+          <div id="game-control">
+            <div id="bombCount" class="game-control">001</div>
+            <div id="smiley">
+              <img id="smiley-img" src="./images/smiley-face-tears-joy.png" />
             </div>
+            <div id="timer" class="game-control">00:10</div>
           </div>
-        
+        </div>
+
+        <div id="game-win" class="modal modal-shape hidden">
+          <div class="close-modal-btn">
+            <i id="btn-close-game-win" class="fa-solid fa-xmark"></i>
+          </div>
+
+          <div class="modal-header">
+            <h1>You Won!</h1>
+          </div>
+          <button id="btn-play-now" class="game-button pink">Play Now</button>
+        </div>
       </section>
     </section>
   </body>
 </html>
-
-
 
 <!-- <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 18L12 12M12 12V3.40992C12 2.97917 12.4404 2.68876 12.8364 2.85844L21.2803 6.47729C21.7549 6.68065 21.7681 7.34854 21.302 7.5705L12 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 22C15.866 22 19 20.433 19 18.5C19 16.567 15.866 15 12 15C8.13401 15 5 16.567 5 18.5C5 20.433 8.13401 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> -->
 <!-- <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e6096c">

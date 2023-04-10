@@ -99,6 +99,7 @@ function countBomb(divArray) {
  ******************************************************************/
 function updateTileStyles(div) {
   if (div.dataset.status === "flagged") {
+    div.classList.add("tile-flagged");
     div.style.backgroundColor = fontColorProperty[0].backgroundColor;
     div.style.color = fontColorProperty[0].fontColor;
     div.style.boxShadow = `0 4px 0 ${fontColorProperty[0].outsetColor}`;

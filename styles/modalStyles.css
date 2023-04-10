@@ -33,11 +33,25 @@
   z-index: -10;
 }
 
-.modal-header {
+.close-modal-btn {
+  position: absolute;
+  transform: translate(50%, -10%);
+  top: 0;
+  right: 0;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  line-height: 3rem;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+/* .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .hidden {
   transform: scale(0);
