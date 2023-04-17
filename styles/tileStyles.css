@@ -69,7 +69,8 @@
   font-size: 1.4rem;
   line-height: 28px;
   margin: 1px;
-  background-color: var(--tile-hidden);
+  background-color: white; /* var(--tile-hidden); */
+  box-shadow: 0 2px 0 var(--tile-hidden);
   border-radius: 0.6rem;
   display: flex;
   justify-content: center;
@@ -87,6 +88,7 @@
   transform: translate(4px, -2px);
 } */
 
+.bomb[data-status="revealed"],
 .tile-revealed,
 .tile-flagged {
   height: 28px;

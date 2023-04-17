@@ -1,5 +1,7 @@
 import { MinesweeperGame, Tile } from "./classes/minesweeperGame.js";
 import { fontColorProperty } from "./gameConstants/gameConstants.js";
+import { closeGameWin } from "./utils/gameWindowUtils.js";
+import { toggleSmiley } from "./utils/gameBoardUtils.js";
 import {
   tileClick,
   getAdjacentTiles,
@@ -15,13 +17,16 @@ const how_to_btn = document.getElementById("btn-how-to");
 const close_how_to_btn = document.getElementById("btn-close-how-to");
 const play_now_btn = document.getElementById("btn-play-now");
 const close_game_win_btn = document.getElementById("btn-close-game-win");
+const play_again_btn = document.getElementById("btn-play-again");
 const test_show_modal_btn = document.getElementById("test-show-modal");
 
+const overlay = document.getElementById("overlay");
 const game_params = document.getElementById("game-params");
 const how_to_play = document.getElementById("how-to-play");
 const game_win = document.getElementById("game-win");
 
 const board = document.getElementById("board");
+const tile_board = document.getElementById("tile-board");
 const pages = document.querySelectorAll(".page");
 
 const game_title = "MINESWEEPER";
@@ -72,25 +77,44 @@ close_how_to_btn.addEventListener("click", () => {
 
 // 5. Play Now button (Game parameter window)
 play_now_btn.addEventListener("click", () => {
-  // 1. Close game parameter modal
-  game_params.classList.remove("active");
-  // 2. Slide to game board page
-  slide("next");
-  // 3. Instantiate new game
+  const gameDifficulty = document.querySelector(
+    "input[name='gameDifficulty']:checked"
+  ).dataset.gameDifficulty;
 
-  minesweeperGame = new MinesweeperGame("guest", "adventurous", 4, 6, 10, true);
+  game_params.classList.remove("active");
+  slide("next");
+  minesweeperGame = new MinesweeperGame(
+    "guest",
+    gameDifficulty,
+    4,
+    6,
+    10,
+    true
+  );
   console.log("instantiate new game", minesweeperGame);
 });
 
+// TO REMOVE
 test_show_modal_btn.addEventListener("click", () => {
   game_win.classList.add("active");
 });
 
-close_game_win_btn.addEventListener("click", () => {
-  game_win.classList.remove("active");
+// 6. Close 'Game-win' window
+close_game_win_btn.addEventListener("click", () => closeGameWin());
+
+// 7. Reset game board with new game
+play_again_btn.addEventListener("click", () => {
+  // clear board
+  toggleSmiley();
+  tile_board.innerHTML = "";
+  closeGameWin();
+  minesweeperGame = new MinesweeperGame("guest", "hard", 4, 6, 10, true);
 });
 
+// 8. Listen to tile left click on game board
 board.addEventListener("click", (e) => tileClick(e.target));
+
+// 9. Listen to tile right click on game board
 board.addEventListener("contextmenu", (e) => {
   e.preventDefault();
   tileRightClick(e.target);
@@ -106,6 +130,7 @@ TODO -
 (2) "reveal" and "hidden" CSS class
 (3) Event listener on tile - end game when click on tile containing bomb
 (4) To create two game modals - 1. Game over  2. You win 
-(5) Add click sound
-(6) Right click to remove flag (or rotate between question mark and flag)
+(5) Create endgame function on - time's up / click on bomb -> show endgame modal
+(6) Create start new game function - reset timer, reset board, reset smiley face, reset bombcount
+(7) Create lose action function - stop timer + confetti + disable click + setTimeout (show overlay + win modal)
 */

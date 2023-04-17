@@ -1,7 +1,8 @@
 import { Tile } from "../classes/minesweeperGame.js";
+import { minesweeperGame } from "../script.js";
 
 /****************************************************************************
- * Funtion: To shuffle game array (randomize bombs position in the array)
+ * Function: To shuffle game array (randomize bombs position in the array)
  * @param {*} array array containing "normal" and "bomb"
  * @returns shuffled game array
  */
@@ -65,7 +66,7 @@ function createBoard(rowNum, colNum, bombNum) {
       row.append(tile.boardTile);
     }
 
-    board.append(row);
+    document.getElementById("tile-board").append(row);
   }
   console.log("board", board);
 }
@@ -84,8 +85,12 @@ function timer(timeInSeconds) {
 /****************************************************************************
  * Function: Update timer display in DOM after game starts.
  */
+
+let timerId;
 function startTimer(hasTimer, timeInSeconds, gameStatus) {
-  let timerId = setInterval(() => {
+  clearInterval(timerId);
+
+  timerId = setInterval(() => {
     console.log("I am in setInterval");
 
     // Count down timer
@@ -104,7 +109,7 @@ function startTimer(hasTimer, timeInSeconds, gameStatus) {
     clearInterval(timerId);
   }, 1000);
 
-  return timerId;
+  // return timerId;
 }
 
 /****************************************************************************
@@ -112,7 +117,10 @@ function startTimer(hasTimer, timeInSeconds, gameStatus) {
  * @param {*} div This function takes in a div representing the tile that has been clicked on to examine if it contains a bomb in its classList.
  */
 function toggleSmiley(div) {
-  if (div.classList.contains("bomb")) {
+  if (div === undefined) {
+    document.getElementById("smiley-img").src =
+      "../images/smiley-face-tears-joy.png";
+  } else if (div.classList.contains("bomb")) {
     document.getElementById("smiley-img").src = "../images/crying-emoji.png";
     return;
   }
@@ -128,4 +136,60 @@ function toggleSmiley(div) {
   }, 200);
 }
 
-export { createGameArray, createBoard, timer, startTimer, toggleSmiley };
+/**
+ * Function: Check winning of game on every tile click.
+ * If number of tiles containing bomb revealed = total number of bombs
+ */
+function checkWin() {
+  if (
+    document.querySelectorAll("[data-status = 'flagged'].bomb").length ===
+    minesweeperGame.gameBombNum
+  ) {
+    //document.getElementById("game-win").classList.add("active");
+    winAction();
+  }
+}
+
+/**
+ * Function: Actions to perform on winning game.
+ * 1. Stop timer.
+ * 2. Disable all click events on hidden and flagged tiles.
+ * 3. Show confetti
+ * 4. Show overlay and game-winning modal after delay.
+ */
+function winAction() {
+  // 1.
+  clearInterval(timerId);
+
+  // 2.
+  const tilesToDisable = document.querySelectorAll(
+    "[data-status='hidden'], [data-status='flagged']"
+  );
+
+  tilesToDisable.forEach((tile) => (tile.style["pointer-events"] = "none"));
+
+  // 3.
+  const JSConfetti = window.JSConfetti;
+  const jsConfetti = new JSConfetti();
+  jsConfetti.addConfetti({
+    emojis: ["🌸", "✨"],
+    emojiSize: 10,
+    confettiNumber: 1000,
+  });
+
+  // 4.
+  setTimeout(() => {
+    document.getElementById("overlay").classList.add("active");
+    document.getElementById("game-win").classList.add("active");
+  }, 3000);
+}
+
+export {
+  createGameArray,
+  createBoard,
+  timer,
+  startTimer,
+  toggleSmiley,
+  checkWin,
+  winAction,
+};

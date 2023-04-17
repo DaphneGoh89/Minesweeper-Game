@@ -81,3 +81,8 @@ button {
     rgba(255, 255, 255, 0) 100%
   );
 }
+
+.button-overlay {
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 30;
+}

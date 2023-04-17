@@ -14,7 +14,7 @@ const gameDifficulty = Object.freeze({
     rowNum: 10,
     colNum: 10,
     bombCount: 15,
-    timeAllowedInSecond: 60,
+    timeAllowedInSecond: 600,
   },
   medium: {
     rowNum: 16,
@@ -41,8 +41,8 @@ const gameDifficulty = Object.freeze({
  */
 const fontColorProperty = {
   0: {
-    backgroundColor: "rgb(255, 255, 255)",
-    fontColor: "rgb(255, 255, 255)",
+    backgroundColor: "rgba(195, 216, 234)",
+    fontColor: "rgba(195, 216, 234)",
     outsetColor: "rgb(195, 216, 234)",
   },
   1: {

@@ -20,6 +20,7 @@ export class MinesweeperGame {
     this.difficultyLevel = difficultyLevel;
     this.rowNum = gameDifficulty[difficultyLevel].rowNum;
     this.colNum = gameDifficulty[difficultyLevel].colNum;
+    this.gameBombNum = gameDifficulty[difficultyLevel].bombCount;
     this.bombNum = gameDifficulty[difficultyLevel].bombCount;
     this.hasTimer = hasTimer;
     this.timeInSeconds = hasTimer
@@ -30,13 +31,9 @@ export class MinesweeperGame {
 
     // Initiate timer
     timer(this.timeInSeconds);
-    this.timerId = startTimer(
-      this.hasTimer,
-      this.timeInSeconds,
-      this.gameStatus
-    );
+    startTimer(this.hasTimer, this.timeInSeconds, this.gameStatus);
 
-    console.log("myTimer", this.timerId);
+    //console.log("myTimer", this.timerId);
   }
 
   // check win
@@ -48,8 +45,16 @@ export class MinesweeperGame {
   // flag tile
 
   // minus bomb
-  setBombNum() {
+  minusBombNum() {
     this.bombNum -= 1;
+    document.getElementById("bombCount").innerHTML = String(
+      this.bombNum
+    ).padStart(4, "0");
+  }
+
+  // add bomb
+  addBombNum() {
+    this.bombNum += 1;
     document.getElementById("bombCount").innerHTML = String(
       this.bombNum
     ).padStart(4, "0");

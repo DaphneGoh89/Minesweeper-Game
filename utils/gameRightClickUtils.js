@@ -1,5 +1,6 @@
 import { minesweeperGame } from "../script.js";
 import { flag } from "../gameConstants/gameConstants.js";
+import { checkWin } from "./gameBoardUtils.js";
 import { updateTileStyles } from "./gameLeftClickUtils.js";
 
 /****************************************************
@@ -17,16 +18,18 @@ function tileRightClick(tile) {
     tile.innerHTML = flag;
     // updateTileStyles(tile);
     document.getElementById("tile-flagged").play(); // Play flag's audio
-    minesweeperGame.setBombNum();
+    minesweeperGame.minusBombNum();
+    checkWin();
   }
 
-  // (ii) Remove flag from div that ahs already been flagged
+  // (ii) Remove flag from div that has already been flagged
   else if (tile.tagName === "DIV" && tile.dataset.status === "flagged") {
     tile.dataset.status = "hidden";
     tile.classList.remove("tile-flagged");
     tile.innerHTML = "";
+    minesweeperGame.addBombNum();
   }
-  // (iii) Recursively call rightClick function with svg/ path's ancestor
+  // (iii) Recursively call rightClick function with svg/ path's ancestor (associated with remove flag function)
   else if (tile.tagName === "svg" || tile.tagName === "path") {
     tileRightClick(tile.closest(".tile"));
   }

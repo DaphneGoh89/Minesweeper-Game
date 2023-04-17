@@ -8,31 +8,37 @@
   margin: auto;
   width: 25vw;
   height: 30vh;
-  background-color: white;
+  background-color: white; /* TO REMOVE */
   color: black;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   font-family: "guava-candy", monospace;
   transition: all 300ms ease-in-out;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 50%/10%;
   z-index: 50;
 }
 
-.modal-shape {
-  border-radius: 50%/10%;
-}
+/* .modal-shape {
+} */
 
 /* Added for TV-shaped div */
-.modal-shape::before {
+.modal::before {
   content: "";
   position: absolute;
   top: 10%;
   bottom: 10%;
   right: -5%;
   left: -5%;
-  background: inherit;
+  background: white;
+  color: white;
   border-radius: 5%/50%;
   z-index: -10;
 }
 
+/* Close modal button on top-right corner */
 .close-modal-btn {
   position: absolute;
   transform: translate(50%, -10%);
@@ -46,12 +52,6 @@
   border-radius: 50%;
   background-color: inherit;
 }
-
-/* .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-} */
 
 .hidden {
   transform: scale(0);

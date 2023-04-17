@@ -1,6 +1,6 @@
 import { fontColorProperty } from "../gameConstants/gameConstants.js";
 import { minesweeperGame } from "../script.js";
-import { toggleSmiley } from "./gameBoardUtils.js";
+import { toggleSmiley, checkWin, winAction } from "./gameBoardUtils.js";
 
 /******************************************************************
  * Event Propagation:
@@ -14,6 +14,13 @@ import { toggleSmiley } from "./gameBoardUtils.js";
 
 function tileClick(tile) {
   if (tile.dataset.status !== "hidden") {
+    return;
+  } else if (tile.classList.contains("bomb")) {
+    tile.dataset.status = "revealed";
+    tile.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
+    tile.style.backgroundColor = "red";
+    revealBombs();
+    winAction();
     return;
   }
   tile.dataset.status = "revealed";
@@ -30,6 +37,7 @@ function tileClick(tile) {
   updateTileStyles(tile);
   toggleSmiley(tile);
   document.getElementById("tile-click").play(); // document.getElementById("tile-click").duration
+  checkWin();
 
   // Repeat tileClick() if surroundingBombs = 0
   if (surroundingBombs == 0) {
@@ -103,7 +111,7 @@ function updateTileStyles(div) {
   if (div.classList.contains("bomb")) {
     div.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
     div.style.backgroundColor = "red";
-    revealBombs();
+    //revealBombs();
 
     setTimeout(() => {
       let bombArray = document.querySelectorAll(".bomb");
@@ -127,11 +135,21 @@ function updateTileStyles(div) {
 /******************************************************************
  * Function: Reveal all bombs when called.
  *****************************************************************/
+let bombShowInterval;
 function revealBombs() {
   let bombArray = document.querySelectorAll(".bomb");
-  for (let div of bombArray) {
-    div.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
-  }
+  let i = 0;
+
+  bombShowInterval = setInterval(() => {
+    console.log("setInterval - still running?");
+    if (i < bombArray.length) {
+      bombArray[i].dataset.status = "revealed";
+      bombArray[i].innerHTML = "<img src='../images/bomb_icon.svg'></img>";
+      i++;
+    } else {
+      clearInterval(bombShowInterval);
+    }
+  }, 50);
 }
 
 export { tileClick, getAdjacentTiles, countBomb, updateTileStyles };
