@@ -64,9 +64,9 @@
 }
 
 .tile {
-  width: 28px;
-  height: 30px;
-  font-size: 1.4rem;
+  width: 2vw;
+  height: 2.2vw;
+  font-size: 1.4vw;
   line-height: 28px;
   margin: 1px;
   background-color: white; /* var(--tile-hidden); */
@@ -84,15 +84,18 @@
   height: 75%;
 }
 
-/* .flag {
-  transform: translate(4px, -2px);
-} */
+.bomb-revealed {
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  border-radius: 50%;
+}
 
 .bomb[data-status="revealed"],
 .tile-revealed,
 .tile-flagged {
-  height: 28px;
-  background-color: white;
+  height: 2vw; /* 28px */
+  /* background-color: white; */
   color: white;
   box-shadow: 0 2px 0 var(--tile-hidden);
   animation: animate-tile ease-out 0.5s forwards;
@@ -145,3 +148,16 @@
   stroke-dashoffset: 0;
   animation: animate-flag 0.6s linear forwards;
 }
+
+/* @media screen and (max-width: 480px) {
+  .tile {
+    width: 6vw;
+    height: 6.2vw;
+    font-size: 1.4vw;
+    line-height: 6.2vw;
+    margin: 1px;
+    box-shadow: 0 2px 0 var(--tile-hidden);
+    border-radius: 0.6rem;
+
+  }
+} */

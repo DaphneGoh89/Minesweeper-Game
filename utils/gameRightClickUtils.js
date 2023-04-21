@@ -19,7 +19,7 @@ function tileRightClick(tile) {
     // updateTileStyles(tile);
     document.getElementById("tile-flagged").play(); // Play flag's audio
     minesweeperGame.minusBombNum();
-    checkWin();
+    checkWin(tile);
   }
 
   // (ii) Remove flag from div that has already been flagged

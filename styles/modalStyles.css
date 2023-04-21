@@ -1,56 +1,70 @@
 /***************************************************** GAME MODALS *****************************************************/
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   margin: auto;
   width: 25vw;
-  height: 30vh;
-  background-color: white; /* TO REMOVE */
-  color: black;
-  padding: 2.5rem 1.5rem;
+  height: 55vh;
+  background-image: url("../images/164681.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding: 3rem 2.5rem;
   font-family: "guava-candy", monospace;
   transition: all 300ms ease-in-out;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  border-radius: 50%/10%;
+  border-radius: 1rem;
   z-index: 50;
 }
 
-/* .modal-shape {
-} */
+.modal-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-/* Added for TV-shaped div */
-.modal::before {
-  content: "";
+.modal-content .modal-header {
+  flex: 1;
+  position: relative;
+}
+
+.modal-content .modal-body {
+  flex: 6;
+}
+
+.modal-content .modal-footer {
+  flex: 1;
+}
+
+.pos-absolute {
   position: absolute;
-  top: 10%;
-  bottom: 10%;
-  right: -5%;
-  left: -5%;
-  background: white;
-  color: white;
-  border-radius: 5%/50%;
-  z-index: -10;
+  top: 0;
+  right: 0;
 }
 
 /* Close modal button on top-right corner */
 .close-modal-btn {
-  position: absolute;
-  transform: translate(50%, -10%);
-  top: 0;
-  right: 0;
-  text-align: center;
-  width: 3rem;
-  height: 3rem;
-  font-size: 3rem;
+  text-align: right;
+  font-size: 3vw;
   line-height: 3rem;
   border-radius: 50%;
   background-color: inherit;
+}
+
+.close-modal-btn i {
+  color: white;
+}
+
+.modal-title {
+  letter-spacing: 2px;
+  font-size: 2vw;
+  color: var(--modal-title);
+  line-height: 3rem;
 }
 
 .hidden {

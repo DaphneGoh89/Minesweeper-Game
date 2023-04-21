@@ -11,8 +11,11 @@
 }
 
 :root {
-  --title-lightpink: rgba(255, 206, 209);
+  --page-background: #f1f5f9;
+  --modal-title: #164e63;
+  --title-lightpink: rgba(241, 156, 173);
   --title-darkpink: rgba(253, 0, 143);
+  --title-black: white;
   --board-background: rgba(216, 237, 227, 1);
   --tile-hidden: rgba(195, 216, 234, 1);
   --tile-one-background: rgb(0, 193, 231);
@@ -42,22 +45,27 @@ body {
   height: 100vh;
   overflow: hidden;
   font-family: "guava-candy", "Press Start 2P", helvetica, sans-serif;
-  /* background-color: black; */
-  background-image: url("./images/cloud.jpg");
-  background-color: rgba(254, 247, 230, 1);
+  background-image: url("./images/164570.jpg");
+  background-color: /*rgba(254, 247, 230, 1)*/ var(--page-background);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
 }
 
-#overlay {
-  position: absolute;
+input[type="number"] {
+  outline: none;
+}
+
+.overlay {
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
   z-index: 10;
 }
 
@@ -75,10 +83,21 @@ body {
   transition: all 0.7s 0.3s; /* transition, duration, delay */
 }
 
+/****************************************************** GAME BOARD PAGE ******************************************************/
+/* To show scroll bar in game page (in case board size too big) */
 .page.two {
-  padding: 4rem auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* padding: 4rem auto; */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.two {
+  background-image: url("./images/164570.jpg");
+  background-color: /*rgba(254, 247, 230, 1)*/ #f1f5f9;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
 
 /****************************************************** GAME HOME PAGE ******************************************************/
@@ -90,8 +109,12 @@ body {
   text-align: center;
 }
 
+.half-page {
+  width: 50%;
+}
+
 #game-title {
-  font-size: 8em;
+  font-size: 8vw;
   padding: 1rem 0;
 }
 
@@ -100,21 +123,11 @@ body {
   background: linear-gradient(
     180deg,
     var(--title-darkpink) 0 60%,
-    var(--title-lightpink) 40% 100%
+    /*var(--title-lightpink)*/ white 40% 100%
   );
   -webkit-background-clip: text;
 }
 
-.center-page button {
-  padding: 1rem 2rem;
-}
-
-/****************************************************** GAME BOARD PAGE ******************************************************/
-.two {
-  background-image: url("./images/cloud.jpg");
-  background-color: rgba(254, 247, 230, 1);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
+.page.two.overflow-hidden {
+  overflow: hidden;
 }

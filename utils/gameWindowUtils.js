@@ -1,9 +1,9 @@
-const overlay = document.getElementById("overlay");
-const game_win = document.getElementById("game-win");
+const overlay = document.querySelector(".two .overlay");
+const game_end = document.getElementById("game-end");
 
-function closeGameWin() {
-  game_win.classList.remove("active");
+function closeGameEnd() {
+  game_end.classList.remove("active");
   overlay.classList.remove("active");
 }
 
-export { closeGameWin };
+export { closeGameEnd };

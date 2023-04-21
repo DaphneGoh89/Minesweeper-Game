@@ -1,6 +1,9 @@
-import { fontColorProperty } from "../gameConstants/gameConstants.js";
+import {
+  fontColorProperty,
+  bombColorArray,
+} from "../gameConstants/gameConstants.js";
 import { minesweeperGame } from "../script.js";
-import { toggleSmiley, checkWin, winAction } from "./gameBoardUtils.js";
+import { toggleSmiley, checkWin, endGameAction } from "./gameBoardUtils.js";
 
 /******************************************************************
  * Event Propagation:
@@ -19,8 +22,8 @@ function tileClick(tile) {
     tile.dataset.status = "revealed";
     tile.innerHTML = "<img src='../images/bomb_icon.svg'></img>";
     tile.style.backgroundColor = "red";
-    revealBombs();
-    winAction();
+    toggleSmiley(tile);
+    endGameAction(tile);
     return;
   }
   tile.dataset.status = "revealed";
@@ -143,8 +146,15 @@ function revealBombs() {
   bombShowInterval = setInterval(() => {
     console.log("setInterval - still running?");
     if (i < bombArray.length) {
+      const randomNumber = Math.floor(Math.random() * bombColorArray.length);
+
       bombArray[i].dataset.status = "revealed";
-      bombArray[i].innerHTML = "<img src='../images/bomb_icon.svg'></img>";
+      // bombArray[i].innerHTML = "<img src='../images/bomb_icon.svg'></img>";
+      bombArray[i].innerHTML = "<div class='bomb-revealed'></div>";
+      bombArray[i].style.backgroundColor = bombColorArray[randomNumber].light;
+      bombArray[i].firstChild.style.backgroundColor =
+        bombColorArray[randomNumber].dark;
+
       i++;
     } else {
       clearInterval(bombShowInterval);
@@ -152,4 +162,11 @@ function revealBombs() {
   }, 50);
 }
 
-export { tileClick, getAdjacentTiles, countBomb, updateTileStyles };
+/***********************************************************************/
+export {
+  tileClick,
+  getAdjacentTiles,
+  countBomb,
+  updateTileStyles,
+  revealBombs,
+};

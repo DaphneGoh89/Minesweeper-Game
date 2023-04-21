@@ -82,4 +82,12 @@ const fontColorProperty = {
   },
 };
 
-export { flag, gameDifficulty, fontColorProperty };
+const bombColorArray = [
+  { colorName: "purple", light: "rgb(129, 105, 144)", dark: "rgb(58,32,69)" },
+  { colorName: "brown", light: "rgb(214, 122, 72)", dark: "rgb(103,32,59)" },
+  { colorName: "pink", light: "rgb(205, 95, 133)", dark: "rgb(188,49,103)" },
+  { colorName: "blue", light: "rgb(62, 100, 148)", dark: "rgb(33,65,115)" },
+  { colorName: "green", light: "rgb(108, 169, 79)", dark: "rgb(0,64,70)" },
+];
+
+export { flag, gameDifficulty, fontColorProperty, bombColorArray };

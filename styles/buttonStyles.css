@@ -1,88 +1,49 @@
 button {
   cursor: pointer;
-  margin-right: 2rem;
   border-style: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
 }
 
 /****************************************************** GAME JELLY BUTTON STYLE ******************************************************/
+#home-btn {
+  display: flex;
+  justify-content: space-around;
+  /* width: 100%; */
+}
+
 .game-button {
   position: relative;
-  font-family: "kalyubi";
-  font-size: large;
+  font-family: "guava-candy";
+  font-size: larger;
   letter-spacing: 2px;
-  width: 15rem;
+  width: 20vw;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
+  transition: all 0.4s ease-in-out;
   /* border: 0.5px solid #727d95; */
-  border-radius: 2rem;
+  /* border-radius: 2rem;
   box-shadow: 0 0.5rem 0.25rem 0 rgba(22, 75, 195, 0.5),
     0 -0.25rem 0.5rem rgba(110, 15, 155, 1) inset,
     0 0.4rem 0.5rem rgba(255, 255, 255, 0.4) inset,
-    0 0.1rem 0.2rem 0 rgba(180, 70, 207, 1) inset;
+    0 0.1rem 0.2rem 0 rgba(180, 70, 207, 1) inset; */
+}
+
+.game-button:hover {
+  opacity: 0.8;
+  transform: scaleX(0.95);
+}
+
+.game-button.black {
+  background-color: var(--title-black);
+  color: var(--title-darkpink);
 }
 
 .game-button.pink {
-  background-image: linear-gradient(
-    -180deg,
-    var(--title-lightpink) 0%,
-    var(--title-darkpink) 100%
-  );
+  background-color: var(--title-darkpink);
+  color: var(--title-black);
 }
 
-.game-button.green {
-  background-image: linear-gradient(
-    -180deg,
-    var(--tile-five-background) 0%,
-    var(--tile-five-outset) 100%
-  );
-}
-
-.game-button::before {
-  content: "";
-  display: block;
-  height: 0.2rem;
-  position: absolute;
-  top: 0.36rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(60%);
-  background: #fff;
-  border-radius: 100%;
-
-  opacity: 0.7;
-  background-image: linear-gradient(
-    -270deg,
-    rgba(255, 255, 255, 0) 0%,
-    #ffffff 20%,
-    #ffffff 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.game-button::after {
-  content: "";
-  display: block;
-  height: 0.25rem;
-  position: absolute;
-  bottom: 0.75rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 7.5rem);
-  background: #fff;
-  border-radius: 100%;
-
-  filter: blur(1px);
-  opacity: 0.05;
-  background-image: linear-gradient(
-    -270deg,
-    rgba(255, 255, 255, 0) 0%,
-    #ffffff 20%,
-    #ffffff 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.button-overlay {
-  background-color: rgba(0, 0, 0, 1);
-  z-index: 30;
+.modal button {
+  width: 100%;
 }

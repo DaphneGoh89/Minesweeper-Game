@@ -1,9 +1,4 @@
-import {
-  createGameArray,
-  createBoard,
-  timer,
-  startTimer,
-} from "../utils/gameBoardUtils.js";
+import { createBoard, timer, startTimer } from "../utils/gameBoardUtils.js";
 import { gameDifficulty } from "../gameConstants/gameConstants.js";
 
 export class MinesweeperGame {
@@ -18,31 +13,21 @@ export class MinesweeperGame {
   ) {
     this.player = player;
     this.difficultyLevel = difficultyLevel;
-    this.rowNum = gameDifficulty[difficultyLevel].rowNum;
-    this.colNum = gameDifficulty[difficultyLevel].colNum;
-    this.gameBombNum = gameDifficulty[difficultyLevel].bombCount;
-    this.bombNum = gameDifficulty[difficultyLevel].bombCount;
+    this.rowNum = rowNum;
+    this.colNum = colNum;
+    this.gameBombNum = bombNum;
+    this.bombNum = bombNum;
     this.hasTimer = hasTimer;
     this.timeInSeconds = hasTimer
       ? gameDifficulty[difficultyLevel].timeAllowedInSecond
       : 0;
     this.gameStatus = "started";
-    this.gameArray = createBoard(this.rowNum, this.colNum, this.bombNum);
+    this.gameArray = createBoard(this.rowNum, this.colNum, this.gameBombNum);
 
     // Initiate timer
     timer(this.timeInSeconds);
     startTimer(this.hasTimer, this.timeInSeconds, this.gameStatus);
-
-    //console.log("myTimer", this.timerId);
   }
-
-  // check win
-
-  // check lose
-
-  // reveal tile
-
-  // flag tile
 
   // minus bomb
   minusBombNum() {
@@ -72,12 +57,5 @@ export class Tile {
       boardTile.classList.add("bomb");
     }
     this.boardTile = boardTile;
-    this.tileClick = function () {
-      console.log("I'm clicked!");
-    };
   }
-
-  // flag tile
-
-  // mark question
 }

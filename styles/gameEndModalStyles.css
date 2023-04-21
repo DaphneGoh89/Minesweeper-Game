@@ -1,0 +1,20 @@
+#game-end h1 {
+  font-size: 3vw;
+  margin-bottom: 2vw;
+}
+
+#star-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#star-container.game-win img {
+  width: 30%;
+  height: 30%;
+}
+
+#star-container.game-lose img {
+  width: 20%;
+  height: 20%;
+}

@@ -1,130 +1,59 @@
-/* Slider's container */
-#dot-slider {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  position: relative;
-  width: 100%;
-  height: 4rem;
-  /* background: red; */
+/* New CSS */
+.game-difficulty {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 2rem;
 }
 
-/* Horizontal bar */
-#dot-slider::before {
-  content: "";
-  position: absolute;
-  height: 1rem;
-  width: calc(100% * (4 / 5));
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  background: #ecfccb;
-}
-
-#dot-slider input,
-#dot-slider label {
-  box-sizing: border-box;
-  flex: 1;
-  cursor: pointer;
-}
-
-/* Checkbox + label */
-#dot-slider label {
-  display: inline-block;
-  position: relative;
-  width: 20%;
-  height: 100%;
-}
-
-/* Label */
-#dot-slider label::before {
-  content: attr(data-game-difficulty);
-  position: absolute;
-  transform: translate(-50%, 45px);
-  left: 50%;
-  padding-top: 0.75rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.4px;
-  font-weight: 400;
-  opacity: 0.4;
-  white-space: nowrap;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Bullet container */
-#dot-slider label::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 30px;
-  height: 30px;
-  /* border: 2px solid #d0d0d0; */
-  background: #ecfccb;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-#dot-slider label:hover::after {
-  transform: translate(-50%, -50%) scale(1.25);
-}
-
-#dot-slider input:checked + label::before {
-  font-weight: 800;
-  opacity: 1;
-}
-
-/* bullet */
-#dot-slider label input:checked + label::after {
-  border-width: 4px;
-  transform: translate(-50%, -50%) scale(0.75);
-  border: 2px solid green;
-}
-
-#dot-slider input {
+.game-difficulty input {
   display: none;
 }
 
-#dot-slider input:checked ~ #dot-input-label {
+.game-difficulty label {
+  display: block;
+  cursor: pointer;
+  letter-spacing: 2px;
+  color: var(--modal-title);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
+  transition: all 0.4s;
+}
+
+.game-difficulty label:hover {
+  background-color: #e2e8f0;
+  color: #475569;
+  font-size: large;
+  opacity: 0.7;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #e2e8f0;
+  font-size: large;
+  color: #475569;
   opacity: 1;
 }
 
-/* Radiobutton bullet */
-#dot-slider #dot-input-label {
-  display: block;
-  position: absolute;
-  top: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: #22c55e;
-  border-radius: 50%;
-  transition: all 0.45s ease-in-out;
-  transform: translate(-50%, -50%);
-  /* border: 2px solid red; */
-  opacity: 0;
-  z-index: 2;
+#custom-game-param {
+  text-align: left;
+  padding: 1rem;
+  border: 4px dashed white;
+  border-radius: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-#dot-slider input:checked:nth-child(1) ~ #dot-input-label {
-  left: 10%;
+#custom-game-param div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
-
-#dot-slider input:checked:nth-child(3) ~ #dot-input-label {
-  left: 30%;
-}
-
-#dot-slider input:checked:nth-child(5) ~ #dot-input-label {
-  left: 50%;
-}
-
-#dot-slider input:checked:nth-child(7) ~ #dot-input-label {
-  left: 70%;
-}
-
-#dot-slider input:checked:nth-child(9) ~ #dot-input-label {
-  left: 90%;
+#custom-game-param div input {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  text-align: center;
+  border: none;
+  border-radius: 1rem;
+  font-family: "guava-candy";
+  caret-color: var(--title-darkpink);
 }
