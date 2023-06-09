@@ -20,3 +20,13 @@ Ready to play now? [Click here](https://minesweeper-prj.netlify.app/) to start y
 
 3. Game window
    ![minesweeper-game-window](./images/readme/minesweeper-game-window.png)
+
+## Technologies
+
+1. Javascript
+2. HTML
+3. CSS
+
+## Further Work To Be Done
+
+1. To include game count-down timer.
