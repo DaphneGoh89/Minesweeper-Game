@@ -16,7 +16,7 @@ Ready to play now? [Click here](https://minesweeper-prj.netlify.app/) to start y
    ![minesweeper-main-screen](./images/readme/minesweeper-main-window.png)
 
 2. Game difficulty selection
-   ![minesweeper-game-difficulty-selection](./images/readme/minesweeper-game-difficulty.png)
+   ![minesweeper-game-difficulty-selection](./images/readme/minesweeper-game-selection.png)
 
 3. Game window
    ![minesweeper-game-window](./images/readme/minesweeper-game-window.png)
